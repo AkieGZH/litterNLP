@@ -1,4 +1,5 @@
 /.idea/
 /.venv/
-/datas/
+/datas/*
+!/datas/example/
 /.env

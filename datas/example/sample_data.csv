@@ -1,0 +1,7 @@
+content,parse_content
+监听到的群聊信息,期望得到的数据格式
+chat_messages,"{
+    ""data"": [
+    ""str_split_by_'.'""
+    ]
+}

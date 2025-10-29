@@ -79,7 +79,7 @@ def get_data(path):
         return
 
     # generate the filename
-    filename = f'../data/{datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}.csv'
+    filename = path + f'{datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}.csv'
 
     # write into .csv
     with open(filename, 'w', encoding='utf-8', newline='') as csvfile:
@@ -93,4 +93,4 @@ def get_data(path):
 
 
 if __name__ == '__main__':
-    get_data('../data/')
+    get_data('../datas/')
