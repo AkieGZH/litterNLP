@@ -32,15 +32,15 @@ def get_newest(path):
     if newest_date is not None:
         return newest_date
     else:
-        print(f"No stored data yet in path: {path}")
+        print(f"No stored dataset yet in path: {path}")
         return None
 
 
 def get_data(path):
     """
-    Gets the data from the given path.
-    If there is data in the path, then gets the newly added data.
-    :param path: Path to store the data
+    Gets the dataset from the given path.
+    If there is dataset in the path, then gets the newly added dataset.
+    :param path: Path to store the dataset
     :return None
     """
     # connect the database
@@ -62,21 +62,22 @@ def get_data(path):
     # get the last newest fetch file date
     newest_date = get_newest(path)
     if newest_date is None:
-        print(f"No stored data yet!")
-        print(f"Fetching all data from database!")
+        print(f"No stored dataset yet!")
+        print(f"Fetching all dataset from database!")
         sql = "SELECT content, parse_content FROM cp_content"
         cursor.execute(sql)
     else:
-        print(f"Last fetched data from database at {newest_date}!")
-        print(f"Only updated data will be fetched from database!")
+        print(f"Last fetched dataset from database at {newest_date}!")
+        print(f"Only updated dataset will be fetched from database!")
         sql = f"SELECT content, parse_content FROM cp_content WHERE time > %s"
         cursor.execute(sql, (newest_date,))
 
     # execute the query
     results = cursor.fetchall()
     if not results:
-        print(f"No updated data available in database!")
+        print(f"No updated dataset available in database!")
         return
+    # TODO: process the result
 
     # generate the filename
     filename = path + f'{datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}.csv'
